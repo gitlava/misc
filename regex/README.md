@@ -4,9 +4,11 @@ Common repository for developed complex regular expressions.
 
 All regular expressions are stored in separate files with formatting and 
 comments. Use compile.sh to prepare regular expression for usage.
+
   Example: ./compile.sh date.expr
 
 Web-tool to check expressions: http://www.gskinner.com/RegExr/
+
 Mostly compliant for extended RE mechanisms and not guarantee full availability 
 for sed/grep/etc. Though I mostly use console utils, this doesn't mean shown RE 
 couldn't contain mistakes or require special configuration.  
@@ -20,6 +22,7 @@ couldn't contain mistakes or require special configuration.
   century (related to leap-years processing).
 
   Example data:
+
   01/01/00   31/01/00   28/02/00   29/02/00   31/12/00   32/12/00
   01/01/01   31/01/01   28/02/01   29/02/01   31/12/01   32/12/01
   01/01/04   31/01/04   28/02/04   29/02/04   31/12/04   32/12/04
