@@ -3,46 +3,49 @@
 
 FONT_NAME="anonymous pro"
 
-alias b='tput bold'
-alias b-='tput sgr0'
+BON=$(tput bold)
+BOFF=$(tput sgr0)
+
+NON=$(tput smso)
+NOFF=$(tput rmso)
 
 sample() {
-    echo -e "Showing monospace font: $(b)${FONT_NAME}$(b-)"
+    echo -e "Showing monospace font: ${NON}${FONT_NAME}${NOFF}"
     card | duplicate_in_bold
 }
 
 duplicate_in_bold() {
     while read line
     do
-        echo -e "${line}$(b)${line}$(b-)"
+        echo -e "${line}${BON}${line}${BOFF}"
     done
 }
 
 card() {
     cat <<EOS
 ┌←─ ~ ────────────────────────────○[↓]→┐
+│ell 'lL', one '1'                lL1iI│
+│little eye 'i', big eye 'I'           │
+│Zero '0'                           0oO│
+│little oh 'o', big oh 'O'             │
 │                                      │
+│    \`~!@$%^&*()_+-=[]\\{}|:";'<>?,./    │
+│              0123456789              │
 │                                      │
+│  THE QUICK BROWN FOX JUMPS OVER THE  │
+│               LAZY DOG               │
 │                                      │
+│  the quick brown fox jumps over the  │
+│               lazy dog               │
 │                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
-│                                      │
+│  Your text here:                     │
+│  ╔════════════════════════════════╗  │
+│  ║                                ║  │
+│  ║                                ║  │
+│  ╚════════════════════════════════╝  │
 ├──────────────────────────────────────┤
 └──────────────────────────────────────┘
-$                                    [^]
+$ #                                  [^]
 EOS
 }
 
