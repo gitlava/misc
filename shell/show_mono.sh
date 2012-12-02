@@ -33,10 +33,12 @@ custom_line_2() {
 card() {
     cat <<EOS
 ┌←─ ~ ────────────────────────────○[↓]→┐
-│ell 'lL', one '1'                lL1iI│
-│little eye 'i', big eye 'I'           │
-│Zero '0'                           0oO│
-│little oh 'o', big oh 'O'             │
+│1lLiI                          one '1'│
+│             little el 'l', big el 'L'│
+│           little eye 'i', big eye 'I'│
+│                                      │
+│0oO                           Zero '0'│
+│             little oh 'o', big oh 'O'│
 │                                      │
 │   \`~!@#$%^&*()_+-=[]\\\\{}|:";'<>?,./   │
 │              0123456789              │
@@ -47,14 +49,12 @@ card() {
 │  the quick brown fox jumps over the  │
 │               lazy dog               │
 │                                      │
-│  Your text here:                     │
-│  ╔════════════════════════════════╗  │
-│  ║$(custom_line_1)║  │
-│  ║$(custom_line_2)║  │
+│  ╔═ Your text: ═══════════════════╗  │
+│  ║$(custom_line_1                )║  │
+│  ║$(custom_line_2                )║  │
 │  ╚════════════════════════════════╝  │
 ├──────────────────────────────────────┤
 └──────────────────────────────────────┘
-$                                    [^]
 EOS
 }
 
