@@ -195,14 +195,14 @@ class Championship(object):
       raise Exception('One of teams is invalid')
 
   def group_statistics(self, group_name):
-    statistics = {}
+    group_table = []
     group = self.groups[group_name]
     for team in group.teams:
-      statistics[team] = self.team_statistics(team)
-    return statistics
+      group_table.append(self.team_statistics(team))
+    return group_table
 
   def team_statistics(self, team):
-    statistics = {'games_played': 0, 'goals_for': 0, 'goals_against': 0, 'points': 0}
+    statistics = {'name': team, 'games_played': 0, 'goals_for': 0, 'goals_against': 0, 'points': 0}
     for key in self.games:
       game = self.games[key]
       if (game.team_a == team):
@@ -216,6 +216,11 @@ class Championship(object):
         statistics['goals_against'] += game.score['a']
         statistics['points'] += game.team_b_points()
     return statistics
+
+  def print_group(self, group_name):
+    statistics = sorted(self.group_statistics(group_name))
+    for team in statistics:
+      print team
 
 
 championship2014 = Championship()
@@ -273,9 +278,12 @@ championship2014.add_game_info(Game('Denmark',      'Czech',       [4,3,False]))
 championship2014.add_game_info(Game('Belarus',      'Germany',     [5,2,True]))
 championship2014.add_game_info(Game('Slovakia',     'Italy',       [4,1,True]))
 championship2014.add_game_info(Game('Switzerland',  'Kazakhstan',  [6,2,True]))
+#18 May
+championship2014.add_game_info(Game('Canada',  'Sweden',  [3,2,False]))
+championship2014.add_game_info(Game('USA',  'Finland',  [3,1,True]))
 
 
 print championship2014
 
-print championship2014.group_statistics('B')
+championship2014.print_group('B')
 
