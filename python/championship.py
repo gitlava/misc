@@ -28,32 +28,7 @@ class Game(object):
   def team_b(self, value):
     self._team_b = value
 
-  # internal score
-  @property
-  def score_a(self):
-    return self._score_a
-
-  @score_a.setter
-  def score_a(self, value):
-    self._score_a = value
-
-  @property
-  def score_b(self):
-    return self._score_b
-
-  @score_b.setter
-  def score_b(self, value):
-    self._score_b = value
-
-  @property
-  def prime_time(self):
-    return self._prime_time
-
-  @prime_time.setter
-  def prime_time(self, value):
-    self._prime_time = value
-
-  # outer score
+  #outer score
   @property
   def score(self):
     return self._score
@@ -67,6 +42,30 @@ class Game(object):
       self._score['a'] = value[0]
       self._score['b'] = value[1]
       self._score['in_prime_time'] = value[2]
+
+  def team_a_points(self):
+    if (self.score['a'] > self.score['b']):
+      if (self.score['in_prime_time']):
+        return 3
+      else:
+        return 2
+    else:
+      if (not self.score['in_prime_time']):
+        return 1
+      else:
+        return 0
+
+  def team_b_points(self):
+    if (self.score['b'] > self.score['a']):
+      if (self.score['in_prime_time']):
+        return 3
+      else:
+        return 2
+    else:
+      if (not self.score['in_prime_time']):
+        return 1
+      else:
+        return 0
 
   def __init__(self, team_a, team_b, score = {}):
     self.team_a = team_a
@@ -195,6 +194,30 @@ class Championship(object):
     else:
       raise Exception('One of teams is invalid')
 
+  def group_statistics(self, group_name):
+    statistics = {}
+    group = self.groups[group_name]
+    for team in group.teams:
+      statistics[team] = self.team_statistics(team)
+    return statistics
+
+  def team_statistics(self, team):
+    statistics = {'games_played': 0, 'goals_for': 0, 'goals_against': 0, 'points': 0}
+    for key in self.games:
+      game = self.games[key]
+      if (game.team_a == team):
+        statistics['games_played'] += 1
+        statistics['goals_for'] += game.score['a']
+        statistics['goals_against'] += game.score['b']
+        statistics['points'] += game.team_a_points()
+      elif (game.team_b == team):
+        statistics['games_played'] += 1
+        statistics['goals_for'] += game.score['b']
+        statistics['goals_against'] += game.score['a']
+        statistics['points'] += game.team_b_points()
+    return statistics
+
+
 championship2014 = Championship()
 championship2014.init_group('A', ['Canada', 'Czech', 'Denmark', 'France', 'Italy', 'Norway', 'Slovakia', 'Sweden'])
 championship2014.init_group('B', ['Belarus', 'Finland', 'Germany', 'Kazakhstan', 'Latvia', 'Russia', 'Switzerland', 'USA'])
@@ -254,4 +277,5 @@ championship2014.add_game_info(Game('Switzerland',  'Kazakhstan',  [6,2,True]))
 
 print championship2014
 
+print championship2014.group_statistics('B')
 
