@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 
+
 class Game(object):
 
   #date
@@ -225,7 +226,9 @@ class TeamStatistics(object):
     self.points        = 0
 
   def __str__(self):
-    return str({'team':self.team, 'games_played':self.games_played, 'goals_for':self.goals_for, 'goals_against':self.goals_against, 'points':self.points})
+    string = "%-12s : %2s  %2s:%-2s  %2s" % (self.team, self.games_played, self.goals_for, self.goals_against, self.points)
+#   str({'team':self.team, 'games_played':self.games_played, 'goals_for':self.goals_for, 'goals_against':self.goals_against, 'points':self.points})
+    return string
 
   def __cmp__(self, other):
     if (self.points != other.points):
@@ -339,11 +342,11 @@ championship2014.add_game_info(Game('Switzerland', 'Kazakhstan',  [6,2,True]))
 #18 May
 championship2014.add_game_info(Game('Canada',      'Sweden',      [3,2,False]))
 championship2014.add_game_info(Game('USA',         'Finland',     [3,1,True]))
+championship2014.add_game_info(Game('Czech',       'Norway',      [1,0,True]))
+championship2014.add_game_info(Game('Russia',      'Germany',     [3,0,True]))
 
-
-print championship2014
-
+print 'Group A:'
 championship2014.print_group('A')
-print
+print '\nGroup B:'
 championship2014.print_group('B')
 
