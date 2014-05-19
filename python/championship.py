@@ -227,6 +227,12 @@ class TeamStatistics(object):
   def __str__(self):
     return str({'team':self.team, 'games_played':self.games_played, 'goals_for':self.goals_for, 'goals_against':self.goals_against, 'points':self.points})
 
+  def __cmp__(self, other):
+    if (self.points != other.points):
+      return cmp(self.points, other.points)
+    else:
+      return cmp(self.goals_for - self.goals_against, other.goals_for - other.goals_against)
+
   @property
   def team(self):
     return self._team
