@@ -4,7 +4,8 @@
 FONT_NAME=$(sed -rn 's/^([^!]\w*)?[.*]faceName\s*:\s*//p' .Xdefaults .Xresources | tail -1)
 [ -z "${FONT_NAME}" ] && FONT_NAME="anonymous pro"
 
-CUSTOM_TEXT="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
+CUSTOM_TEXT="${*}"
+[ -z "${CUSTOM_TEXT}"] && CUSTOM_TEXT="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
 
 BON=$(tput bold)
 BOFF=$(tput sgr0)
